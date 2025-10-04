@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placements - EEIF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            background-color: #003366;
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-placeholder {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .logo-placeholder a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .nav-container {
+            background-color: #001a33;
+            padding: 12px 20px;
+            border-radius: 3px;
+            margin: 10px 0;
+            position: absolute;
+            left: 320px;
+            right: 150px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            transition: font-weight 0.2s ease;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .nav-text:hover {
+            font-weight: 900;
+        }
+
+        .nav-text.active {
+            font-weight: 900;
+        }
+
+        .main-content {
+            padding: 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+            margin-top: 130px;
+        }
+
+        .footer {
+            background-color: #003366;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-left: 20px;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 32px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .footer-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-link img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .footer-logo {
+            margin-right: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-placeholder">
+            <a href="index.html">
+                <img src="../Logos/EEIF Logo_with_Line_cropped_final3.png" alt="EEIF Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav-container">
+            <a href="index.html" class="nav-text">Home</a>
+            <a href="teams.html" class="nav-text">Teams</a>
+            <a href="events.html" class="nav-text">Calendar</a>
+            <a href="placements.html" class="nav-text active">Placements</a>
+            <a href="projects.html" class="nav-text">Publications</a>
+            <a href="leadership.html" class="nav-text">Leadership</a>
+            <a href="join.html" class="nav-text">Join</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Placements content will go here -->
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://www.instagram.com/emory_eif/" class="footer-link" target="_blank" aria-label="Instagram">
+                <img src="../Logos/Instagram_Glyph_White.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/company/emory-economics-investment-forum/" class="footer-link" target="_blank" aria-label="LinkedIn">
+                <img src="../Logos/InBug-White.png" alt="LinkedIn">
+            </a>
+        </div>
+        <div class="footer-logo">
+            <a href="https://economics.emory.edu/undergraduate/organizations/econ-investment-forum.html" target="_blank" aria-label="Emory Economics Department">
+                <img src="../Logos/EU_shield_hz_rv.png" alt="Emory University">
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

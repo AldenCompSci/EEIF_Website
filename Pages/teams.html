@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams - EEIF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --eeif-gold: #c5a348;
+            --eeif-navy: #0a2f63;
+            --eeif-ice: #f7fbff;
+            --eeif-blue: #0066cc;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background:
+                radial-gradient(1200px 800px at 15% 20%, rgba(10,47,99,0.40), transparent 75%),
+                radial-gradient(1000px 700px at 85% 30%, rgba(10,47,99,0.35), transparent 75%),
+                radial-gradient(900px 600px at 40% 85%, rgba(197,163,72,0.30), transparent 75%),
+                var(--eeif-ice);
+            background-attachment: fixed, fixed, fixed, fixed;
+            background-repeat: no-repeat;
+            animation: meshShift 50s ease-in-out infinite alternate;
+        }
+
+        @keyframes meshShift {
+            0% {
+                background-position:
+                    0% 0%,
+                    100% 5%,
+                    40% 100%,
+                    0 0;
+            }
+            100% {
+                background-position:
+                    20% 15%,
+                    85% 25%,
+                    45% 80%,
+                    0 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body { animation: none; }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            background-color: #003366;
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-placeholder {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .logo-placeholder a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .nav-container {
+            background-color: #001a33;
+            padding: 12px 20px;
+            border-radius: 3px;
+            margin: 10px 0;
+            position: absolute;
+            left: 320px;
+            right: 150px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            transition: font-weight 0.2s ease;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .nav-text:hover {
+            font-weight: 900;
+        }
+
+        .nav-text.active {
+            font-weight: 900;
+        }
+
+        .main-content {
+            padding: 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+            margin-top: 130px;
+        }
+
+        .footer {
+            background-color: #003366;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-left: 20px;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 32px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .footer-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-link img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .footer-logo {
+            margin-right: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Teams Page Specific Styles */
+        .main-content {
+            padding: 40px 20px;
+            min-height: 100vh;
+            margin-top: 130px;
+        }
+
+        .teams-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .teams-title {
+            text-align: center;
+            font-size: 3.5rem;
+            color: var(--eeif-navy);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .teams-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (max-width: 768px) {
+            .teams-subtitle {
+                white-space: normal;
+                font-size: 1.1rem;
+            }
+        }
+
+        .division-section {
+            margin-bottom: 80px;
+        }
+
+        .division-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .division-title {
+            font-size: 2.5rem;
+            color: var(--eeif-navy);
+            margin-bottom: 15px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .division-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--eeif-gold), var(--eeif-blue));
+            border-radius: 2px;
+        }
+
+        .division-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            justify-items: center;
+            padding: 0 20px;
+        }
+
+        .team-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 20px;
+            padding: 35px 25px 25px 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            border: 2px solid transparent;
+            width: 100%;
+            max-width: 380px;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--eeif-gold), var(--eeif-blue));
+            transform: scaleX(0);
+            transition: transform 0.2s ease-out;
+            will-change: transform;
+        }
+
+        .team-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+            border-color: var(--eeif-gold);
+        }
+
+        .research-card:hover {
+            box-shadow: 0 16px 48px rgba(0,102,204,0.15);
+        }
+
+        .investment-card:hover {
+            box-shadow: 0 16px 48px rgba(197,163,72,0.15);
+        }
+
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--eeif-navy), var(--eeif-blue));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, background 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            will-change: transform, background;
+        }
+
+        .team-icon svg {
+            width: 40px;
+            height: 40px;
+            color: white;
+            transition: transform 0.2s ease;
+            will-change: transform;
+        }
+
+        .team-card:hover .team-icon {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, var(--eeif-gold), #e6a947);
+        }
+
+        .team-card:hover .team-icon svg {
+            transform: scale(1.1);
+        }
+
+        .team-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--eeif-navy);
+            margin-bottom: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .team-card:hover .team-name {
+            color: var(--eeif-blue);
+        }
+
+        .team-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .teams-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .teams-title {
+                font-size: 2.8rem;
+            }
+            
+            .teams-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+                white-space: normal;
+            }
+            
+            .division-title {
+                font-size: 2rem;
+            }
+            
+            .teams-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 10px;
+            }
+            
+            .team-card {
+                padding: 25px 20px 20px 20px;
+                max-width: 100%;
+            }
+            
+            .teams-container {
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 20px 10px;
+            }
+            
+            .teams-title {
+                font-size: 2.2rem;
+            }
+            
+            .division-title {
+                font-size: 1.8rem;
+            }
+            
+            .team-card {
+                padding: 20px 15px 15px 15px;
+            }
+            
+            .team-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .team-icon svg {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .team-name {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-placeholder">
+            <a href="index.html">
+                <img src="../Logos/EEIF Logo_with_Line_cropped_final3.png" alt="EEIF Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav-container">
+            <a href="index.html" class="nav-text">Home</a>
+            <a href="teams.html" class="nav-text active">Teams</a>
+            <a href="events.html" class="nav-text">Calendar</a>
+            <a href="projects.html" class="nav-text">Publications</a>
+            <a href="leadership.html" class="nav-text">Leadership</a>
+            <a href="join.html" class="nav-text">Join</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="teams-container">
+            <h1 class="teams-title">Our Teams</h1>
+            <p class="teams-subtitle">Explore our specialized divisions and discover where your interests align</p>
+            
+            <!-- Research Division -->
+            <div class="division-section">
+                <div class="division-header">
+                    <h2 class="division-title">Research Division</h2>
+                    <p class="division-description">Dedicated to market analysis, data-driven insights, and comprehensive research methodologies</p>
+                </div>
+                
+                <div class="teams-grid">
+                    <div class="team-card research-card">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 7H6C4.89543 7 4 7.89543 4 9V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V9C20 7.89543 19.1046 7 18 7H15M9 7V5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7M9 7H15M12 12V16M10 14H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="team-name">Quantitative</h3>
+                        <p class="team-description">Advanced statistical modeling and algorithmic trading strategies</p>
+                    </div>
+                    
+                    <div class="team-card research-card">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7H7C5.89543 7 5 7.89543 5 9V11M19 11V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="team-name">Project</h3>
+                        <p class="team-description">Strategic research initiatives and comprehensive market studies</p>
+                    </div>
+                    
+                    <div class="team-card research-card">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 6H20M4 12H20M4 18H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="team-name">Market News</h3>
+                        <p class="team-description">Real-time market updates and economic news analysis</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Investments Division -->
+            <div class="division-section">
+                <div class="division-header">
+                    <h2 class="division-title">Investments Division</h2>
+                    <p class="division-description">Focused on portfolio management, sector analysis, and investment strategies across diverse markets</p>
+                </div>
+                
+                <div class="teams-grid">
+                    <div class="team-card investment-card">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3V21H21M7 16L10 13L14 17L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="team-name">Generalist</h3>
+                        <p class="team-description">Broad market coverage with diversified investment strategies</p>
+                    </div>
+                    
+                    <div class="team-card investment-card">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12H15M12 9V15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="team-name">Healthcare</h3>
+                        <p class="team-description">Specialized focus on pharmaceutical, biotech, and healthcare sectors</p>
+                    </div>
+                    
+                    <div class="team-card investment-card">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 7V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V7M3 7V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V7M3 7H21M8 11V17M12 11V17M16 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="team-name">Consumer Retail</h3>
+                        <p class="team-description">Analysis of consumer behavior and retail market trends</p>
+                    </div>
+                    
+                    <div class="team-card investment-card">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="team-name">Value Investing</h3>
+                        <p class="team-description">Fundamental analysis and long-term value investment strategies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://www.instagram.com/emory_eif/" class="footer-link" target="_blank" aria-label="Instagram">
+                <img src="../Logos/Instagram_Glyph_White.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/company/emory-economics-investment-forum/" class="footer-link" target="_blank" aria-label="LinkedIn">
+                <img src="../Logos/InBug-White.png" alt="LinkedIn">
+            </a>
+        </div>
+        <div class="footer-logo">
+            <a href="https://economics.emory.edu/undergraduate/organizations/econ-investment-forum.html" target="_blank" aria-label="Emory Economics Department">
+                <img src="../Logos/EU_shield_hz_rv.png" alt="Emory University">
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

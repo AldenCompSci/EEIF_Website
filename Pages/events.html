@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - EEIF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --eeif-gold: #c5a348;
+            --eeif-navy: #0a2f63;
+            --eeif-ice: #f7fbff;
+            --mx: 0px;
+            --my: 0px;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background:
+                radial-gradient(1200px 800px at 15% 20%, rgba(10,47,99,0.40), transparent 75%),
+                radial-gradient(1000px 700px at 85% 30%, rgba(10,47,99,0.35), transparent 75%),
+                radial-gradient(900px 600px at 40% 85%, rgba(197,163,72,0.30), transparent 75%),
+                var(--eeif-ice);
+            background-attachment: fixed, fixed, fixed, fixed;
+            background-repeat: no-repeat;
+            animation: meshShift 50s ease-in-out infinite alternate;
+        }
+
+        @keyframes meshShift {
+            0% {
+                background-position:
+                    0% 0%,
+                    100% 5%,
+                    40% 100%,
+                    0 0;
+            }
+            100% {
+                background-position:
+                    20% 15%,
+                    85% 25%,
+                    45% 80%,
+                    0 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body { animation: none; }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            background-color: #003366;
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-placeholder {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .logo-placeholder a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .nav-container {
+            background-color: #001a33;
+            padding: 12px 20px;
+            border-radius: 3px;
+            margin: 10px 0;
+            position: absolute;
+            left: 320px;
+            right: 150px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            transition: font-weight 0.2s ease;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .nav-text:hover {
+            font-weight: 900;
+        }
+
+        .nav-text.active {
+            font-weight: 900;
+        }
+
+        .main-content {
+            padding: 20px;
+            min-height: 100vh;
+            margin-top: 130px;
+        }
+
+        .footer {
+            background-color: #003366;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-left: 20px;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 32px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .footer-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-link img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .footer-logo {
+            margin-right: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Events page specific styles */
+        .events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 60px;
+        }
+
+        .events-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .events-title {
+            font-size: 3rem;
+            color: var(--eeif-navy);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .events-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--eeif-gold), var(--eeif-navy));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--eeif-gold);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(197, 163, 72, 0.3);
+            z-index: 10;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(10, 47, 99, 0.1);
+            border: 2px solid rgba(197, 163, 72, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -30px;
+            border-left-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+            border-right-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(10, 47, 99, 0.15);
+            border-color: rgba(197, 163, 72, 0.4);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            color: var(--eeif-navy);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .event-date {
+            background: linear-gradient(135deg, var(--eeif-navy), #052449);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .event-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .event-detail-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--eeif-gold);
+            font-weight: bold;
+        }
+
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .events-container {
+                padding: 20px 30px;
+            }
+            
+            .events-title {
+                font-size: 2.2rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+                transform: translateX(-50%);
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+                padding-left: 60px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .timeline-content::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .events-container {
+                padding: 15px 20px;
+            }
+            
+            .events-title {
+                font-size: 1.8rem;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .event-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .event-date {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-placeholder">
+            <a href="index.html">
+                <img src="../Logos/EEIF Logo_with_Line_cropped_final3.png" alt="EEIF Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav-container">
+            <a href="index.html" class="nav-text">Home</a>
+            <a href="teams.html" class="nav-text">Teams</a>
+            <a href="events.html" class="nav-text active">Calendar</a>
+            <a href="projects.html" class="nav-text">Publications</a>
+            <a href="leadership.html" class="nav-text">Leadership</a>
+            <a href="join.html" class="nav-text">Join</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="events-container">
+            <div class="events-header">
+                <h1 class="events-title">Upcoming Events</h1>
+                <p class="events-subtitle">
+                    Members and non-members are welcome to attend our General Body Meetings. Come see what we do! 
+                </p>
+            </div>
+
+            <div class="timeline">
+                <!-- GBM #2 -->
+                <div class="timeline-item" data-event="1">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">General Body Meeting #2</h3>
+                            </div>
+                            <div class="event-date">Oct 3rd</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📅</span>
+                                <span>October 3rd, 2024</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">🕒</span>
+                                <span>3:30 PM - 5:00 PM</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📍</span>
+                                <span>GBS 334</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GBM #3 -->
+                <div class="timeline-item" data-event="2">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">General Body Meeting #3</h3>
+                            </div>
+                            <div class="event-date">Oct 24th</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📅</span>
+                                <span>October 24th, 2024</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">🕒</span>
+                                <span>3:30 PM - 5:00 PM</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📍</span>
+                                <span>GBS 334</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GBM #4 -->
+                <div class="timeline-item" data-event="3">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">General Body Meeting #4</h3>
+                            </div>
+                            <div class="event-date">Nov 7th</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📅</span>
+                                <span>November 7th, 2024</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">🕒</span>
+                                <span>3:30 PM - 5:00 PM</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📍</span>
+                                <span>GBS 334</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GBM #5 -->
+                <div class="timeline-item" data-event="4">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">General Body Meeting #5</h3>
+                            </div>
+                            <div class="event-date">Nov 21st</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📅</span>
+                                <span>November 21st, 2024</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">🕒</span>
+                                <span>3:30 PM - 5:00 PM</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📍</span>
+                                <span>GBS 334</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GBM #6 -->
+                <div class="timeline-item" data-event="5">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">General Body Meeting #6</h3>
+                            </div>
+                            <div class="event-date">Dec 5th</div>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📅</span>
+                                <span>December 5th, 2024</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">🕒</span>
+                                <span>3:30 PM - 5:00 PM</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="event-detail-icon">📍</span>
+                                <span>GBS 234</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://www.instagram.com/emory_eif/" class="footer-link" target="_blank" aria-label="Instagram">
+                <img src="../Logos/Instagram_Glyph_White.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/company/emory-economics-investment-forum/" class="footer-link" target="_blank" aria-label="LinkedIn">
+                <img src="../Logos/InBug-White.png" alt="LinkedIn">
+            </a>
+        </div>
+        <div class="footer-logo">
+            <a href="https://economics.emory.edu/undergraduate/organizations/econ-investment-forum.html" target="_blank" aria-label="Emory Economics Department">
+                <img src="../Logos/EU_shield_hz_rv.png" alt="Emory University">
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>

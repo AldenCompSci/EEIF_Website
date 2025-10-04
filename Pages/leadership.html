@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership - EEIF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --eeif-gold: #c5a348;
+            --eeif-navy: #0a2f63;
+            --eeif-ice:  #f7fbff; /* page field */
+            --mx: 0px;
+            --my: 0px;
+        }
+
+        body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background:
+    radial-gradient(1200px 800px at 15% 20%, rgba(10,47,99,0.40), transparent 75%),
+    radial-gradient(1000px 700px at 85% 30%, rgba(10,47,99,0.35), transparent 75%),
+    radial-gradient(900px 600px at 40% 85%, rgba(197,163,72,0.30), transparent 75%),
+    var(--eeif-ice);
+  background-attachment: fixed, fixed, fixed, fixed;
+  background-repeat: no-repeat;
+  animation: meshShift 50s ease-in-out infinite alternate;
+}
+
+@keyframes meshShift {
+  0% {
+    background-position:
+      0% 0%,
+      100% 5%,
+      40% 100%,
+      0 0;
+  }
+  100% {
+    background-position:
+      20% 15%,
+      85% 25%,
+      45% 80%,
+      0 0;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+}
+
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            background-color: #003366;
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-placeholder {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .logo-placeholder a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .nav-container {
+            background-color: #001a33;
+            padding: 12px 20px;
+            border-radius: 3px;
+            margin: 10px 0;
+            position: absolute;
+            left: 320px;
+            right: 150px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            transition: font-weight 0.2s ease;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .nav-text:hover {
+            font-weight: 900;
+        }
+
+        .nav-text.active {
+            font-weight: 900;
+        }
+
+        .main-content {
+            padding: 20px;
+            min-height: 100vh;
+            margin-top: 130px;
+        }
+
+        .footer {
+            background-color: #003366;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-left: 20px;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 32px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .footer-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-link img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .footer-logo {
+            margin-right: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .leadership-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .leadership-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #003366;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .faculty-title, .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #003366;
+            margin: 80px 0 40px 0;
+            font-weight: 600;
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            justify-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .leadership-card {
+            width: 280px;
+            height: 350px;
+            background-color: #e3f2fd;
+            border: 3px solid rgb(190, 166, 90);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 15px rgba(190, 166, 90, 0.3);
+        }
+
+        .leadership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(190, 166, 90, 0.4);
+        }
+
+        .leadership-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid rgb(190, 166, 90);
+        }
+
+        .leadership-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #003366;
+            margin-bottom: 8px;
+        }
+
+        .leadership-title-text {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .placeholder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            background-color: #ddd;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            border: 3px solid rgb(190, 166, 90);
+        }
+
+        @media (max-width: 768px) {
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .leadership-card {
+                width: 250px;
+                height: 320px;
+            }
+
+            .faculty-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .faculty-title, .section-title {
+                font-size: 1.8rem;
+                margin: 60px 0 30px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .leadership-card {
+                width: 280px;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-placeholder">
+            <a href="index.html">
+                <img src="../Logos/EEIF Logo_with_Line_cropped_final3.png" alt="EEIF Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav-container">
+            <a href="index.html" class="nav-text">Home</a>
+            <a href="teams.html" class="nav-text">Teams</a>
+            <a href="events.html" class="nav-text">Calendar</a>
+            <a href="projects.html" class="nav-text">Publications</a>
+            <a href="leadership.html" class="nav-text active">Leadership</a>
+            <a href="join.html" class="nav-text">Join</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="leadership-container">
+            <h1 class="leadership-title">Leadership Team</h1>
+            
+            <!-- Executive Leadership (No Section Header) -->
+            <div class="leadership-grid">
+                <!-- Sherry -->
+                <a href="https://www.linkedin.com/in/sherry-c-97320b293/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/IMG_2842 - Sherry Tsai.JPG" alt="Sherry Tsai" class="leadership-image">
+                    <div class="leadership-name">Sherry Cai</div>
+                    <div class="leadership-title-text">Co-President</div>
+                </a>
+                
+                <!-- Lola -->
+                <a href="https://www.linkedin.com/in/oyinlolaolawoye/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/Lola_headshot - Oyinlola.jpg" alt="Oyinlola" class="leadership-image">
+                    <div class="leadership-name">Lola Oyinlola</div>
+                    <div class="leadership-title-text">Co-President</div>
+                </a>
+                
+                <!-- Ricky -->
+                <a href="https://www.linkedin.com/in/ricardosucregil/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/JET-Imaging-IMG_6851 (1) - Ricardo Sucre.jpg" alt="Ricardo Sucre Gil" class="leadership-image">
+                    <div class="leadership-name">Ricardo Sucre Gil</div>
+                    <div class="leadership-title-text">Vice President</div>
+                </a>
+            </div>
+
+            <!-- Research Section -->
+            <h2 class="section-title">Research</h2>
+            <div class="leadership-grid">
+                <!-- Alden -->
+                <a href="https://www.linkedin.com/in/alden-harting/" class="leadership-card alden" target="_blank">
+                    <img src="../Leadership_Headshots/AldenTest.jpg" alt="Alden Harting" class="leadership-image">
+                    <div class="leadership-name">Alden Harting</div>
+                    <div class="leadership-title-text">Director of Research</div>
+                </a>
+                
+                <!-- Joy -->
+                <a href="https://www.linkedin.com/in/jiuyi-joy-cheng/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/Joy Cheng - Jiuyi Cheng.JPG" alt="Jiuyi Cheng" class="leadership-image">
+                    <div class="leadership-name">Jiuyi (Joy) Cheng</div>
+                    <div class="leadership-title-text">Director of Research Education & Quantitative Research Team Lead</div>
+                </a>
+                
+                <!-- Veer -->
+                <a href="https://www.linkedin.com/in/veermalhan" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/CDC0A619-C850-44B6-8E9A-42E2856857AA - Veer Malhan.jpeg" alt="Veer Malhan" class="leadership-image">
+                    <div class="leadership-name">Veer Malhan</div>
+                    <div class="leadership-title-text">Market News Lead</div>
+                </a>
+            </div>
+
+            <!-- Investments Section -->
+            <h2 class="section-title">Investments</h2>
+            <div class="leadership-grid">
+                <!-- George -->
+                <a href="http://www.linkedin.com/in/george-cacioppo" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/unnamed - J. George Cacioppo.jpg" alt="J. George Cacioppo" class="leadership-image">
+                    <div class="leadership-name">J. George Cacioppo II</div>
+                    <div class="leadership-title-text">Director of Investment Education & L/S Generalist Team Lead</div>
+                </a>
+                
+                <!-- Liam -->
+                <a href="https://www.linkedin.com/in/william-neild/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/Untitled design (2) - William Neild.jpeg" alt="William Neild" class="leadership-image">
+                    <div class="leadership-name">Liam Neild</div>
+                    <div class="leadership-title-text">Investment Team Lead</div>
+                </a>
+                
+                <!-- Akarsh -->
+                <a href="http://www.linkedin.com/in/akarshjain2007" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/bba phot - pranit jain.jpeg" alt="Pranit Jain" class="leadership-image">
+                    <div class="leadership-name">Akarsh Jain</div>
+                    <div class="leadership-title-text">Value Investing Team Lead</div>
+                </a>
+            </div>
+
+            <!-- Marketing Section -->
+            <h2 class="section-title">Marketing</h2>
+            <div class="faculty-grid">
+                <!-- Chi Chi -->
+                <a href="https://www.linkedin.com/in/chinememmamadu" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/Chi Chi Madu Headshot - Chinememma Madu.jpg" alt="Chinememma Madu" class="leadership-image">
+                    <div class="leadership-name">Chi Chi Madu</div>
+                    <div class="leadership-title-text">Chief Operating Officer & Head of Marketing</div>
+                </a>
+                
+                <a href="http://www.linkedin.com/in/caroline-zu-jialin" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/WechatIMG13 - Caroline Zu.jpg" alt="Caroline Zu" class="leadership-image">
+                    <div class="leadership-name">Caroline Zu</div>
+                    <div class="leadership-title-text">Marketing Team</div>
+                </a>
+            </div>
+
+            <!-- Operations Section -->
+            <h2 class="section-title">Operations</h2>
+            <div class="leadership-grid">
+                <a href="https://www.linkedin.com/in/elaineseetoh/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/DSC_3601 (7) - Elaine See Toh.jpeg" alt="Elaine See Toh" class="leadership-image">
+                    <div class="leadership-name">Elaine See Toh</div>
+                    <div class="leadership-title-text">Operations Officer</div>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/dana-livson/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/Screen Shot 2025-09-02 at 9.40.43 PM - Daniela Livson.png" alt="Daniela Livson" class="leadership-image">
+                    <div class="leadership-name">Dana Livson</div>
+                    <div class="leadership-title-text">Operations Officer</div>
+                </a>
+                
+                <!-- Riana -->
+                <a href="https://www.linkedin.com/in/riana-m-verma/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/ABG_2550 - Riana.JPG" alt="Riana" class="leadership-image">
+                    <div class="leadership-name">Riana Verma</div>
+                    <div class="leadership-title-text">Oxford Liason</div>
+                </a>
+            </div>
+
+            <!-- Faculty Advisors Section -->
+            <h2 class="faculty-title">Faculty Advisors</h2>
+            <div class="faculty-grid">
+                <a href="https://economics.emory.edu/people/faculty/biography/ayar-musa.html" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/ayar-musa.png" alt="Professor Musa Ayar" class="leadership-image">
+                    <div class="leadership-name">Professor Musa Ayar</div>
+                    <div class="leadership-title-text">Faculty Advisor</div>
+                </a>
+                
+                <a href="https://economics.emory.edu/people/faculty/biography/grennan-jillian.html" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/Jillian_Greennan.jpeg" alt="Professor Jillian Grennan" class="leadership-image">
+                    <div class="leadership-name">Professor Jillian Grennan</div>
+                    <div class="leadership-title-text">Faculty Advisor</div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://www.instagram.com/emory_eif/" class="footer-link" target="_blank" aria-label="Instagram">
+                <img src="../Logos/Instagram_Glyph_White.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/company/emory-economics-investment-forum/" class="footer-link" target="_blank" aria-label="LinkedIn">
+                <img src="../Logos/InBug-White.png" alt="LinkedIn">
+            </a>
+        </div>
+        <div class="footer-logo">
+            <a href="https://economics.emory.edu/undergraduate/organizations/econ-investment-forum.html" target="_blank" aria-label="Emory Economics Department">
+                <img src="../Logos/EU_shield_hz_rv.png" alt="Emory University">
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
