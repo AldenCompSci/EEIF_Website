@@ -223,6 +223,11 @@
             justify-items: center;
         }
 
+        /* Center last item if it's alone in a row */
+        .leadership-grid .leadership-card:last-child:nth-child(3n+1) {
+            grid-column: 2;
+        }
+
         .leadership-card {
             width: 280px;
             height: 350px;
@@ -390,6 +395,13 @@
             <!-- Investments Section -->
             <h2 class="section-title">Investments</h2>
             <div class="leadership-grid">
+                <!-- Dylan -->
+                <a href="https://www.linkedin.com/in/dylan-laborwit-506243254/" class="leadership-card" target="_blank">
+                    <img src="../Leadership_Headshots/MJC_7378 2 - Dylan LaBorwit.jpg" alt="Dylan LaBorwit" class="leadership-image">
+                    <div class="leadership-name">Dylan LaBorwit</div>
+                    <div class="leadership-title-text">Chief Investment Officer</div>
+                </a>
+                
                 <!-- George -->
                 <a href="https://www.linkedin.com/in/george-cacioppo" class="leadership-card" target="_blank">
                     <img src="../Leadership_Headshots/unnamed - J. George Cacioppo.jpg" alt="J. George Cacioppo" class="leadership-image">
