@@ -108,15 +108,28 @@
             align-items: center;
             justify-content: center;
             background: 
+                url('Campus_Photos/Candler_Afar.jpeg') center/cover no-repeat fixed;
+            margin-top: 130px;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
                 radial-gradient(1200px 800px at 15% 20%, rgba(10,47,99,0.40), transparent 75%),
                 radial-gradient(1000px 700px at 85% 30%, rgba(10,47,99,0.35), transparent 75%),
                 radial-gradient(900px 600px at 40% 85%, rgba(197,163,72,0.30), transparent 75%),
-                var(--eeif-ice);
+                rgba(240,248,255,0.85);
             background-attachment: fixed, fixed, fixed, fixed;
             background-repeat: no-repeat;
             animation: meshShift 50s ease-in-out infinite alternate;
-            margin-top: 130px;
-            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
         }
 
         @keyframes meshShift {
@@ -137,7 +150,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .hero-section { animation: none; }
+            .hero-section::before { animation: none; }
         }
 
         .hero-content {
