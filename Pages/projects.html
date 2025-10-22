@@ -231,13 +231,14 @@
         .publication-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 16px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 8px 32px rgba(10, 47, 99, 0.1);
             border: 2px solid rgba(197, 163, 72, 0.2);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            min-height: auto;
         }
 
         .publication-card::before {
@@ -546,13 +547,43 @@
                 <div class="publication-card">
                     <div class="publication-header">
                         <div>
+                            <h3 class="publication-title">October 20th, 2025</h3>
+                        </div>
+                    </div>
+                    <div class="publication-actions">
+                        <button class="btn btn-primary" onclick="openModal('../Market News/EEIF M&E (2025A.02).pdf')">
+                            <span>📄</span> View Full Report
+                        </button>
+                        <a href="../Market News/EEIF M&E (2025A.02).pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <span>⬇️</span> Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Second Most Recent -->
+                <div class="publication-card">
+                    <div class="publication-header">
+                        <div>
+                            <h3 class="publication-title">October 10th, 2025</h3>
+                        </div>
+                    </div>
+                    <div class="publication-actions">
+                        <button class="btn btn-primary" onclick="openModal('../Market News/EEIF M&E (2025A.01).pdf')">
+                            <span>📄</span> View Full Report
+                        </button>
+                        <a href="../Market News/EEIF M&E (2025A.01).pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <span>⬇️</span> Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Third Most Recent -->
+                <div class="publication-card">
+                    <div class="publication-header">
+                        <div>
                             <h3 class="publication-title">March 31st, 2025</h3>
                         </div>
                     </div>
-                    <p class="publication-description">
-                        Our latest comprehensive market and economic review covering Q1 2025 developments, 
-                        including Federal Reserve policy updates, inflation trends, and sector-specific analysis.
-                    </p>
                     <div class="publication-actions">
                         <button class="btn btn-primary" onclick="openModal('../Market News/EEIF M&E Review - 2025B.03.pdf')">
                             <span>📄</span> View Full Report
@@ -570,10 +601,6 @@
                             <h3 class="publication-title">March 21st, 2025</h3>
                         </div>
                     </div>
-                    <p class="publication-description">
-                        Mid-March market analysis focusing on emerging market opportunities, 
-                        commodity price movements, and the impact of global economic policies on investment strategies.
-                    </p>
                     <div class="publication-actions">
                         <button class="btn btn-primary" onclick="openModal('../Market News/March 21st - M&E Review.pdf')">
                             <span>📄</span> View Full Report
@@ -591,10 +618,6 @@
                             <h3 class="publication-title">February 22nd, 2025</h3>
                         </div>
                     </div>
-                    <p class="publication-description">
-                        February market analysis examining quarterly earnings season, 
-                        technology sector performance, and macroeconomic indicators shaping investment decisions.
-                    </p>
                     <div class="publication-actions">
                         <button class="btn btn-primary" onclick="openModal('../Market News/Feb 22nd - EEIF M&E.pdf')">
                             <span>📄</span> View Full Report

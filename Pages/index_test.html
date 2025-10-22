@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEIF Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            background-color: #003366;
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-placeholder {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .logo-placeholder a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .nav-container {
+            background-color: #001a33;
+            padding: 12px 20px;
+            border-radius: 3px;
+            margin: 10px 0;
+            position: absolute;
+            left: 320px;
+            right: 150px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            transition: font-weight 0.2s ease;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .nav-text:hover {
+            font-weight: 900;
+        }
+
+        .nav-text.active {
+            font-weight: 900;
+        }
+
+        .white-section {
+            background-color: #ffffff;
+            padding: 80px 20px;
+            min-height: 100vh;
+        }
+
+        .blue-rectangles-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .blue-rectangle {
+            background-color: #0066cc;
+            flex: 1;
+            height: 300px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            padding: 20px;
+            background-color: #0066cc;
+            height: 80vh;
+            margin-top: 130px;
+            position: relative;
+            overflow: hidden; /* needed for SVG line to stay within hero */
+        }
+
+        .page-title {
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: left;
+            margin: 60px 0;
+            line-height: 1.2;
+            margin-left: 1.5in;
+            position: relative;
+            z-index: 1; /* ensures title is above line */
+        }
+
+        .page-title .first-line {
+            font-size: 72px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .page-title .second-line {
+            font-size: 72px;
+            display: block;
+        }
+
+        .page-subtitle {
+            font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: left;
+            margin-left: 1.5in;
+            margin-top: 20px;
+            font-size: 32px;
+            position: relative;
+            z-index: 1; /* ensures subtitle is above line */
+        }
+
+        /* SVG line graph */
+        #scroll-line-graph {
+            position: absolute;
+            top: 180px; /* slightly below title */
+            left: 0;
+            width: 100%;
+            height: 200px;
+            pointer-events: none;
+            z-index: 0; /* behind text */
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-placeholder">
+            <a href="index.html">
+                <img src="EEIF Logo_with_Line_cropped_final3.png" alt="EEIF Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav-container">
+            <a href="index.html" class="nav-text active">Home</a>
+            <a href="teams.html" class="nav-text">Teams</a>
+            <a href="events.html" class="nav-text">Calendar</a>
+            <a href="projects.html" class="nav-text">Projects</a>
+            <a href="leadership.html" class="nav-text">Leadership</a>
+            <a href="join.html" class="nav-text">Join</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">
+            <span class="first-line">Emory Economics</span>
+            <span class="second-line">Investment Forum</span>
+        </h1>
+        <h2 class="page-subtitle">Emory Economics' Business Club</h2>
+
+        <!-- Scroll-triggered line graph SVG -->
+        <svg id="scroll-line-graph" width="100%" height="200">
+            <polyline id="line-graph" points="" fill="none" stroke="white" stroke-width="3" />
+            <g id="line-circles"></g>
+        </svg>
+    </main>
+
+    <section class="white-section">
+        <div class="blue-rectangles-container">
+            <div class="blue-rectangle"></div>
+            <div class="blue-rectangle"></div>
+            <div class="blue-rectangle"></div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const svg = document.getElementById("scroll-line-graph");
+        const polyline = document.getElementById("line-graph");
+        const circleGroup = document.getElementById("line-circles");
+
+        const width = svg.clientWidth;
+        const height = svg.clientHeight;
+
+        const peaks = 10; // number of peaks/dips
+        const verticalAmplitude = 50; // pixels above/below trend line
+        const marginTop = 50; // start below title
+
+        // Calculate points for the line
+        const points = [];
+        for (let i = 0; i <= peaks; i++) {
+            const x = (i / peaks) * width;
+            // linear upward trend + alternating dips/peaks
+            const y = marginTop + height * 0.5 - verticalAmplitude/2 + (i * verticalAmplitude / peaks) + ((i % 2 === 0 ? 1 : -1) * verticalAmplitude / 2);
+            points.push([x, y]);
+        }
+
+        // Add circles at peaks (every other point)
+        points.forEach((point, index) => {
+            if (index % 2 === 0) {
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttribute("cx", point[0]);
+                circle.setAttribute("cy", point[1]);
+                circle.setAttribute("r", 5);
+                circle.setAttribute("fill", "white");
+                circle.setAttribute("opacity", 0); // hide initially
+                circleGroup.appendChild(circle);
+            }
+        });
+
+        // Scroll-driven animation
+        const hero = document.querySelector(".main-content");
+        const heroHeight = hero.offsetHeight;
+
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.scrollY;
+            const start = hero.offsetTop;
+            const end = start + heroHeight;
+            let progress = (scrollTop - start) / (end - start);
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Calculate polyline points to show
+            const numVisiblePoints = Math.floor(progress * points.length);
+            if (numVisiblePoints > 1) {
+                const visiblePoints = points.slice(0, numVisiblePoints + 1).map(p => p.join(",")).join(" ");
+                polyline.setAttribute("points", visiblePoints);
+
+                // Reveal circles as line reaches them
+                const circles = circleGroup.querySelectorAll("circle");
+                circles.forEach((c, i) => {
+                    if (i < numVisiblePoints / 2) {
+                        c.setAttribute("opacity", 1);
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
